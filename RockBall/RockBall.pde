@@ -46,20 +46,50 @@ public class LivingRock extends Rock implements Moveable {
   }
 }
 
-class Ball extends Thing implements Moveable {
+class Ball extends Thing implements Displayable, Moveable {
+  float goalx;
+  float goaly;
   Ball(float x, float y) {
 
     super(x, y);
+    goalx = 50+random(width-100);
+    goaly =50+random(height)-100;
   }
 
   void display() {
+    /* ONE PERSON WRITE THIS */
     fill(255, 0, 255);
     circle(x, y, 50);
-    /* ONE PERSON WRITE THIS */
   }
 
   void move() {
-    /* ONE PERSON WRITE THIS */
+    float increment = 1;
+    boolean atX = false;
+    boolean atY = false;
+    if (Math.abs(x - goalx) >  (2 * increment)) {
+      if (goalx > x) {
+        x += increment;
+      } else {
+        x -= increment;
+      }
+    } else {
+      x = goalx;
+      atX = true;
+    }
+    if (Math.abs(y - goaly) > (2 * increment)) {
+      if (goaly > y) {
+        y += increment;
+      } else {
+        y -= increment;
+      }
+    } else {
+      y = goaly;
+      atY = true;
+    }
+    if (atX && atY) {
+      goalx = 50+random(width-100);
+      goaly = 50+random(height)-100;
+    }
   }
 }
 ArrayList<Displayable> thingsToDisplay;
