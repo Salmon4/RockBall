@@ -53,8 +53,11 @@ class Ball extends Thing implements Moveable {
   }
 
   void display() {
-    fill(255, 0, 255);
-    circle(x, y, 50);
+    //fill(255, 0, 255);
+    //circle(x, y, 50);
+    PImage photo;
+    photo = loadImage("ball1.png");
+    image(photo, x, y);
     /* ONE PERSON WRITE THIS */
   }
 
