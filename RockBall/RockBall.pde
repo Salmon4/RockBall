@@ -49,11 +49,13 @@ public class LivingRock extends Rock implements Moveable {
 class Ball extends Thing implements Displayable, Moveable {
   float goalx;
   float goaly;
+  float increment;
   Ball(float x, float y) {
 
     super(x, y);
     goalx = 50+random(width-100);
     goaly =50+random(height)-100;
+    increment = random(1,4);
   }
 
   void display() {
@@ -64,7 +66,6 @@ class Ball extends Thing implements Displayable, Moveable {
   }
 
   void move() {
-    float increment = 2;
     boolean atX = false;
     boolean atY = false;
     if (Math.abs(x - goalx) >  (2 * increment)) {
@@ -88,8 +89,8 @@ class Ball extends Thing implements Displayable, Moveable {
       atY = true;
     }
     if (atX && atY) {
-      goalx = 50+random(width-100);
-      goaly = 50+random(height)-100;
+      goalx = 60+random(width-110);
+      goaly = 60+random(height)-110;
     }
   }
 }
