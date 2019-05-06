@@ -32,17 +32,18 @@ public class LivingRock extends Rock implements Moveable {
   void move() {
     /* ONE PERSON WRITE THIS */
     if (key == 'w'){
-      super.y = super.y - 1;
+      super.y = super.y - 2;
     }
     if (key == 's'){
-      super.y = super.y + 1;
+      super.y = super.y + 2;
     }
     if (key == 'a'){
-      super.x = super.x - 1;
+      super.x = super.x - 2;
     }
     if (key == 'd'){
-      super.x = super.x + 1;
+      super.x = super.x + 2;
     }
+    key = 'p';
   }
 }
 
