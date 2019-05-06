@@ -53,6 +53,8 @@ class Ball extends Thing implements Moveable {
   }
 
   void display() {
+    fill(255, 0, 255);
+    circle(x, y, 50);
     /* ONE PERSON WRITE THIS */
   }
 
