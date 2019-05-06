@@ -22,6 +22,9 @@ class Rock extends Thing {
   void display() {
     fill(160,160,160);
     ellipse(x,y,100,100);
+  //    PImage rock;
+   //   rock = loadImage("rock1.jpeg");
+  //    image(rock,x,y);
   }
 }
 
@@ -32,28 +35,31 @@ public class LivingRock extends Rock implements Moveable {
   void move() {
     /* ONE PERSON WRITE THIS */
     if (key == 'w'){
-      super.y = super.y - 1;
+      super.y = super.y - 2;
     }
     if (key == 's'){
-      super.y = super.y + 1;
+      super.y = super.y + 2;
     }
     if (key == 'a'){
-      super.x = super.x - 1;
+      super.x = super.x - 2;
     }
     if (key == 'd'){
-      super.x = super.x + 1;
+      super.x = super.x + 2;
     }
+    key = 'p';
   }
 }
 
 class Ball extends Thing implements Displayable, Moveable {
   float goalx;
   float goaly;
+  float increment;
   Ball(float x, float y) {
 
     super(x, y);
     goalx = 50+random(width-100);
     goaly =50+random(height)-100;
+    increment = random(1,4);
   }
 
   void display() {
@@ -72,7 +78,6 @@ class Ball extends Thing implements Displayable, Moveable {
   }
 
   void move() {
-    float increment = 1;
     boolean atX = false;
     boolean atY = false;
     if (Math.abs(x - goalx) >  (2 * increment)) {
@@ -96,8 +101,8 @@ class Ball extends Thing implements Displayable, Moveable {
       atY = true;
     }
     if (atX && atY) {
-      goalx = 50+random(width-100);
-      goaly = 50+random(height)-100;
+      goalx = 60+random(width-110);
+      goaly = 60+random(height)-110;
     }
   }
 }
