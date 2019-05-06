@@ -21,7 +21,7 @@ class Rock extends Thing {
 
   void display() {
     fill(160,160,160);
-    ellipse(x,y,50,50);
+    ellipse(x,y,100,100);
   }
 }
 
