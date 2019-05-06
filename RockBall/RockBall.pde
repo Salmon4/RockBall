@@ -64,7 +64,7 @@ class Ball extends Thing implements Displayable, Moveable {
   }
 
   void move() {
-    float increment = 1;
+    float increment = 2;
     boolean atX = false;
     boolean atY = false;
     if (Math.abs(x - goalx) >  (2 * increment)) {
