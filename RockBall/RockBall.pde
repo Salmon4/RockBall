@@ -64,19 +64,23 @@ class Ball extends Thing implements Displayable, Moveable {
   float goalx;
   float goaly;
   float increment;
+  float red,green,blue;
   Ball(float x, float y) {
 
     super(x, y);
     goalx = 50+random(width-100);
     goaly =50+random(height)-100;
     increment = random(1,4);
+    red = random(0,255);
+    green = random(0,255);
+    blue = random(0,255);
   }
 
   void display() {
     //PImage photo;
     //photo = loadImage("ball1.png");
     //image(photo, x, y);
-    fill(255, 0, 0);
+    fill(red, green, blue);
     circle(x, y, 50);
     fill(255, 165, 0);
     circle(x, y, 40);
@@ -84,6 +88,7 @@ class Ball extends Thing implements Displayable, Moveable {
     circle(x, y, 303);
     circle(x, y, 20);
     circle(x, y, 10);
+
     /* ONE PERSON WRITE THIS */
   }
 
