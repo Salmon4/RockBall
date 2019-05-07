@@ -17,13 +17,29 @@ abstract class Thing implements Displayable {
 }
 
 class Rock extends Thing {
+  PImage rocktype; 
+  
   Rock(float x, float y) {
-    super(x, y);
+    super(x, y);  
+     Random rng = new Random();
+      int randomNum = rng.nextInt(2);
+     if (randomNum == 0) {
+      PImage rock1;
+      rock1 = loadImage("rock1.jpeg");
+      rocktype = rock1;
+      image(rock,x,y);
+   } else {
+       PImage rock2;
+       rock2 = loadImage("rock2.png");
+       rocktype = rock2;
+       image(rock2,x,y);
+   }
   }
 
   void display() {
   //  fill(160,160,160);
   //  ellipse(x,y,100,100);
+  /*
   Random rng = new Random();
   int randomNum = rng.nextInt(2);
    if (randomNum == 0) {
@@ -35,6 +51,8 @@ class Rock extends Thing {
        rock2 = loadImage("rock2.png");
        image(rock2,x,y);
    }
+   */
+    image(rocktype,x,y);
   }
 }
 
