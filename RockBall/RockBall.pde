@@ -20,8 +20,8 @@ class Rock extends Thing {
   }
 
   void display() {
-//    fill(160,160,160);
-//    ellipse(x,y,100,100);
+  //  fill(160,160,160);
+  //  ellipse(x,y,100,100);
       PImage rock;
       rock = loadImage("rock1.jpeg");
       image(rock,x,y);
@@ -35,35 +35,34 @@ public class LivingRock extends Rock implements Moveable {
   void move() {
     /* ONE PERSON WRITE THIS */
     if (key == 'w'){
-      super.y = super.y - 2;
+      super.y = super.y - 10;
     }
     if (key == 's'){
-      super.y = super.y + 2;
+      super.y = super.y + 10;
     }
     if (key == 'a'){
-      super.x = super.x - 2;
+      super.x = super.x - 10;
     }
     if (key == 'd'){
-      super.x = super.x + 2;
+      super.x = super.x + 10;
     }
     key = 'p';
   }
 }
 
-class Ball extends Thing implements Moveable {
+class Ball extends Thing implements Displayable, Moveable {
+  float goalx;
+  float goaly;
+  float increment;
   Ball(float x, float y) {
 
     super(x, y);
+    goalx = 50+random(width-100);
+    goaly =50+random(height)-100;
+    increment = random(1,4);
   }
 
   void display() {
-<<<<<<< HEAD
-    //fill(255, 0, 255);
-    //circle(x, y, 50);
-    PImage photo;
-    photo = loadImage("ball1.png");
-    image(photo, x, y);
-=======
     //PImage photo;
     //photo = loadImage("ball1.png");
     //image(photo, x, y);
@@ -75,12 +74,36 @@ class Ball extends Thing implements Moveable {
     circle(x, y, 30);
     circle(x, y, 20);
     circle(x, y, 10);
->>>>>>> 53f9d200304373b846a5d8bafe7fc27c86c391e4
     /* ONE PERSON WRITE THIS */
   }
 
   void move() {
-    /* ONE PERSON WRITE THIS */
+    boolean atX = false;
+    boolean atY = false;
+    if (Math.abs(x - goalx) >  (2 * increment)) {
+      if (goalx > x) {
+        x += increment;
+      } else {
+        x -= increment;
+      }
+    } else {
+      x = goalx;
+      atX = true;
+    }
+    if (Math.abs(y - goaly) > (2 * increment)) {
+      if (goaly > y) {
+        y += increment;
+      } else {
+        y -= increment;
+      }
+    } else {
+      y = goaly;
+      atY = true;
+    }
+    if (atX && atY) {
+      goalx = 60+random(width-110);
+      goaly = 60+random(height)-110;
+    }
   }
 }
 ArrayList<Displayable> thingsToDisplay;
