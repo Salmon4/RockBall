@@ -27,7 +27,7 @@ class Rock extends Thing {
       PImage rock1;
       rock1 = loadImage("rock1.jpeg");
       rocktype = rock1;
-      image(rock,x,y);
+      image(rock1,x,y);
    } else {
        PImage rock2;
        rock2 = loadImage("rock2.png");
@@ -37,22 +37,7 @@ class Rock extends Thing {
   }
 
   void display() {
-  //  fill(160,160,160);
-  //  ellipse(x,y,100,100);
-  /*
-  Random rng = new Random();
-  int randomNum = rng.nextInt(2);
-   if (randomNum == 0) {
-      PImage rock;
-      rock = loadImage("rock1.jpeg");
-      image(rock,x,y);
-   } else {
-       PImage rock2;
-       rock2 = loadImage("rock2.png");
-       image(rock2,x,y);
-   }
-   */
-    image(rocktype,x,y);
+   image(rocktype,x,y);
   }
 }
 
@@ -62,16 +47,16 @@ public class LivingRock extends Rock implements Moveable {
   }
   void move() {
     /* ONE PERSON WRITE THIS */
-    if (key == 'w'){
+    if (key == 'w') {
       super.y = super.y - 10;
     }
-    if (key == 's'){
+    if (key == 's') {
       super.y = super.y + 10;
     }
-    if (key == 'a'){
+    if (key == 'a') {
       super.x = super.x - 10;
     }
-    if (key == 'd'){
+    if (key == 'd') {
       super.x = super.x + 10;
     }
     key = 'p';
@@ -81,62 +66,68 @@ public class LivingRock extends Rock implements Moveable {
 class Ball extends Thing implements Displayable, Moveable {
   float goalx;
   float goaly;
-  float increment;
-  float red,green,blue;
+  float red, green, blue;
+  float xspeed, yspeed;
+  float radius;
   Ball(float x, float y) {
 
     super(x, y);
     goalx = 50+random(width-100);
     goaly =50+random(height)-100;
-    increment = random(1,4);
-    red = random(0,255);
-    green = random(0,255);
-    blue = random(0,255);
+    red = random(0, 255);
+    green = random(0, 255);
+    blue = random(0, 255);
+    xspeed = random(-4, 4);
+    yspeed = random(-4, 4);
+    radius = 25;
   }
 
-void display() {
+  void display() {
     //PImage photo;
     //photo = loadImage("ball1.png");
     //image(photo, x, y);
-    fill(255, 0, 0);
-    fill(red, green, blue);
-    circle(x, y, 50);
-    fill(255, 165, 0);
-    circle(x, y, 40);
-    fill(255, 255, 0);
-    circle(x, y, 30);
-    circle(x, y, 20);
-    circle(x, y, 10);
+    fill(red, green, blue);  
+    circle(x, y, 2 * radius);
     /* ONE PERSON WRITE THIS */
   }
 
   void move() {
+    /*
     boolean atX = false;
-    boolean atY = false;
-    if (Math.abs(x - goalx) >  (2 * increment)) {
-      if (goalx > x) {
-        x += increment;
-      } else {
-        x -= increment;
-      }
-    } else {
-      x = goalx;
-      atX = true;
+     boolean atY = false;
+     if (Math.abs(x - goalx) >  (2 * increment)) {
+     if (goalx > x) {
+     x += increment;
+     } else {
+     x -= increment;
+     }
+     } else {
+     x = goalx;
+     atX = true;
+     }
+     if (Math.abs(y - goaly) > (2 * increment)) {
+     if (goaly > y) {
+     y += increment;
+     } else {
+     y -= increment;
+     }
+     } else {
+     y = goaly;
+     atY = true;
+     }
+     if (atX && atY) {
+     goalx = 60+random(width-110);
+     goaly = 60+random(height)-110;
+     }
+     */
+    if (x < radius || x > width - radius) {
+      xspeed = -xspeed;
     }
-    if (Math.abs(y - goaly) > (2 * increment)) {
-      if (goaly > y) {
-        y += increment;
-      } else {
-        y -= increment;
-      }
-    } else {
-      y = goaly;
-      atY = true;
+    if (y < radius || y > height - radius) {
+      yspeed = -yspeed;
     }
-    if (atX && atY) {
-      goalx = 60+random(width-110);
-      goaly = 60+random(height)-110;
-    }
+    x += xspeed;
+    y+= yspeed;
   }
 }
 ArrayList<Displayable> thingsToDisplay;
