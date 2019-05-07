@@ -20,11 +20,11 @@ class Rock extends Thing {
   }
 
   void display() {
-    fill(160,160,160);
-    ellipse(x,y,100,100);
-  //    PImage rock;
-   //   rock = loadImage("rock1.jpeg");
-  //    image(rock,x,y);
+//    fill(160,160,160);
+//    ellipse(x,y,100,100);
+      PImage rock;
+      rock = loadImage("rock1.jpeg");
+      image(rock,x,y);
   }
 }
 
@@ -49,19 +49,15 @@ public class LivingRock extends Rock implements Moveable {
   }
 }
 
-class Ball extends Thing implements Displayable, Moveable {
-  float goalx;
-  float goaly;
-  float increment;
+class Ball extends Thing implements Moveable {
   Ball(float x, float y) {
 
     super(x, y);
-    goalx = 50+random(width-100);
-    goaly =50+random(height)-100;
-    increment = random(1,4);
   }
 
   void display() {
+    //fill(255, 0, 255);
+    //circle(x, y, 50);
     PImage photo;
     photo = loadImage("ball1.png");
     image(photo, x, y);
@@ -69,32 +65,7 @@ class Ball extends Thing implements Displayable, Moveable {
   }
 
   void move() {
-    boolean atX = false;
-    boolean atY = false;
-    if (Math.abs(x - goalx) >  (2 * increment)) {
-      if (goalx > x) {
-        x += increment;
-      } else {
-        x -= increment;
-      }
-    } else {
-      x = goalx;
-      atX = true;
-    }
-    if (Math.abs(y - goaly) > (2 * increment)) {
-      if (goaly > y) {
-        y += increment;
-      } else {
-        y -= increment;
-      }
-    } else {
-      y = goaly;
-      atY = true;
-    }
-    if (atX && atY) {
-      goalx = 60+random(width-110);
-      goaly = 60+random(height)-110;
-    }
+    /* ONE PERSON WRITE THIS */
   }
 }
 ArrayList<Displayable> thingsToDisplay;
