@@ -53,29 +53,33 @@ public class LivingRock extends Rock implements Moveable {
 class Ball extends Thing implements Displayable, Moveable {
   float goalx;
   float goaly;
-  float increment;
   float red,green,blue;
+  float xspeed, yspeed;
+  float radius;
   Ball(float x, float y) {
 
     super(x, y);
     goalx = 50+random(width-100);
     goaly =50+random(height)-100;
-    increment = random(1,4);
     red = random(0,255);
     green = random(0,255);
     blue = random(0,255);
+    xspeed = random(-4,4);
+    yspeed = random(-4,4);
+    radius = 25;
   }
 
   void display() {
     //PImage photo;
     //photo = loadImage("ball1.png");
     //image(photo, x, y);
-    fill(red, green, blue);
-    circle(x, y, 50);
+    fill(red, green, blue);  
+    circle(x, y, 2 * radius);
     /* ONE PERSON WRITE THIS */
   }
 
   void move() {
+    /*
     boolean atX = false;
     boolean atY = false;
     if (Math.abs(x - goalx) >  (2 * increment)) {
@@ -102,6 +106,13 @@ class Ball extends Thing implements Displayable, Moveable {
       goalx = 60+random(width-110);
       goaly = 60+random(height)-110;
     }
+    */
+    if(x < radius || x > width - radius || y < radius || y > height - radius){
+      xspeed = -xspeed;
+      yspeed = -yspeed;
+    }
+    x += xspeed;
+    y+= yspeed;
   }
 }
 ArrayList<Displayable> thingsToDisplay;
