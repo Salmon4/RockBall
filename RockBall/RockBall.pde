@@ -1,3 +1,5 @@
+import java.util.*;
+
 interface Displayable {
   void display();
 }
@@ -22,9 +24,17 @@ class Rock extends Thing {
   void display() {
   //  fill(160,160,160);
   //  ellipse(x,y,100,100);
+   Random rng = new Random();
+   int randomNum = rng.nextInt(2);
+   if (randomNum == 0) {
       PImage rock;
       rock = loadImage("rock1.jpeg");
       image(rock,x,y);
+   } else {
+       PImage rock2;
+       rock2 = loadImage("rock2.png");
+       image(rock2,x,y);
+   }
   }
 }
 
@@ -71,7 +81,7 @@ class Ball extends Thing implements Displayable, Moveable {
     fill(255, 165, 0);
     circle(x, y, 40);
     fill(255, 255, 0);
-    circle(x, y, 30);
+    circle(x, y, 303);
     circle(x, y, 20);
     circle(x, y, 10);
     /* ONE PERSON WRITE THIS */
