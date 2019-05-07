@@ -24,8 +24,8 @@ class Rock extends Thing {
   void display() {
   //  fill(160,160,160);
   //  ellipse(x,y,100,100);
-   Random rng = new Random();
-   int randomNum = rng.nextInt(2);
+  Random rng = new Random();
+  int randomNum = rng.nextInt(2);
    if (randomNum == 0) {
       PImage rock;
       rock = loadImage("rock1.jpeg");
@@ -76,19 +76,19 @@ class Ball extends Thing implements Displayable, Moveable {
     blue = random(0,255);
   }
 
-  void display() {
+void display() {
     //PImage photo;
     //photo = loadImage("ball1.png");
     //image(photo, x, y);
+    fill(255, 0, 0);
     fill(red, green, blue);
     circle(x, y, 50);
     fill(255, 165, 0);
     circle(x, y, 40);
     fill(255, 255, 0);
-    circle(x, y, 303);
+    circle(x, y, 30);
     circle(x, y, 20);
     circle(x, y, 10);
-
     /* ONE PERSON WRITE THIS */
   }
 
