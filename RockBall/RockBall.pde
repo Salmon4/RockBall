@@ -1,3 +1,4 @@
+import java.util.Random;
 interface Displayable {
   void display();
 }
@@ -20,11 +21,15 @@ class Rock extends Thing {
   }
 
   void display() {
-  //  fill(160,160,160);
-  //  ellipse(x,y,100,100);
+    //  fill(160,160,160);
+    //  ellipse(x,y,100,100);
+    Random rng = new Random();
+    int randomNum = rng.nextInt(2);
+    if (randomNum == 0) {
       PImage rock;
       rock = loadImage("rock1.jpeg");
-      image(rock,x,y);
+      image(rock, x, y);
+    }
   }
 }
 
@@ -34,16 +39,16 @@ public class LivingRock extends Rock implements Moveable {
   }
   void move() {
     /* ONE PERSON WRITE THIS */
-    if (key == 'w'){
+    if (key == 'w') {
       super.y = super.y - 10;
     }
-    if (key == 's'){
+    if (key == 's') {
       super.y = super.y + 10;
     }
-    if (key == 'a'){
+    if (key == 'a') {
       super.x = super.x - 10;
     }
-    if (key == 'd'){
+    if (key == 'd') {
       super.x = super.x + 10;
     }
     key = 'p';
@@ -53,7 +58,7 @@ public class LivingRock extends Rock implements Moveable {
 class Ball extends Thing implements Displayable, Moveable {
   float goalx;
   float goaly;
-  float red,green,blue;
+  float red, green, blue;
   float xspeed, yspeed;
   float radius;
   Ball(float x, float y) {
@@ -61,11 +66,11 @@ class Ball extends Thing implements Displayable, Moveable {
     super(x, y);
     goalx = 50+random(width-100);
     goaly =50+random(height)-100;
-    red = random(0,255);
-    green = random(0,255);
-    blue = random(0,255);
-    xspeed = random(-4,4);
-    yspeed = random(-4,4);
+    red = random(0, 255);
+    green = random(0, 255);
+    blue = random(0, 255);
+    xspeed = random(-4, 4);
+    yspeed = random(-4, 4);
     radius = 25;
   }
 
@@ -81,36 +86,36 @@ class Ball extends Thing implements Displayable, Moveable {
   void move() {
     /*
     boolean atX = false;
-    boolean atY = false;
-    if (Math.abs(x - goalx) >  (2 * increment)) {
-      if (goalx > x) {
-        x += increment;
-      } else {
-        x -= increment;
-      }
-    } else {
-      x = goalx;
-      atX = true;
-    }
-    if (Math.abs(y - goaly) > (2 * increment)) {
-      if (goaly > y) {
-        y += increment;
-      } else {
-        y -= increment;
-      }
-    } else {
-      y = goaly;
-      atY = true;
-    }
-    if (atX && atY) {
-      goalx = 60+random(width-110);
-      goaly = 60+random(height)-110;
-    }
-    */
-    if(x < radius || x > width - radius){
+     boolean atY = false;
+     if (Math.abs(x - goalx) >  (2 * increment)) {
+     if (goalx > x) {
+     x += increment;
+     } else {
+     x -= increment;
+     }
+     } else {
+     x = goalx;
+     atX = true;
+     }
+     if (Math.abs(y - goaly) > (2 * increment)) {
+     if (goaly > y) {
+     y += increment;
+     } else {
+     y -= increment;
+     }
+     } else {
+     y = goaly;
+     atY = true;
+     }
+     if (atX && atY) {
+     goalx = 60+random(width-110);
+     goaly = 60+random(height)-110;
+     }
+     */
+    if (x < radius || x > width - radius) {
       xspeed = -xspeed;
     }
-    if(y < radius || y > height - radius){
+    if (y < radius || y > height - radius) {
       yspeed = -yspeed;
     }
     x += xspeed;
