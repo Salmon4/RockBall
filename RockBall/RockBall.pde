@@ -35,17 +35,18 @@ public class LivingRock extends Rock implements Moveable {
   void move() {
     /* ONE PERSON WRITE THIS */
     if (key == 'w'){
-      super.y = super.y - 1;
+      super.y = super.y - 2;
     }
     if (key == 's'){
-      super.y = super.y + 1;
+      super.y = super.y + 2;
     }
     if (key == 'a'){
-      super.x = super.x - 1;
+      super.x = super.x - 2;
     }
     if (key == 'd'){
-      super.x = super.x + 1;
+      super.x = super.x + 2;
     }
+    key = 'p';
   }
 }
 
@@ -56,11 +57,25 @@ class Ball extends Thing implements Moveable {
   }
 
   void display() {
+<<<<<<< HEAD
     //fill(255, 0, 255);
     //circle(x, y, 50);
     PImage photo;
     photo = loadImage("ball1.png");
     image(photo, x, y);
+=======
+    //PImage photo;
+    //photo = loadImage("ball1.png");
+    //image(photo, x, y);
+    fill(255, 0, 0);
+    circle(x, y, 50);
+    fill(255, 165, 0);
+    circle(x, y, 40);
+    fill(255, 255, 0);
+    circle(x, y, 30);
+    circle(x, y, 20);
+    circle(x, y, 10);
+>>>>>>> 53f9d200304373b846a5d8bafe7fc27c86c391e4
     /* ONE PERSON WRITE THIS */
   }
 
