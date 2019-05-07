@@ -107,8 +107,10 @@ class Ball extends Thing implements Displayable, Moveable {
       goaly = 60+random(height)-110;
     }
     */
-    if(x < radius || x > width - radius || y < radius || y > height - radius){
+    if(x < radius || x > width - radius){
       xspeed = -xspeed;
+    }
+    if(y < radius || y > height - radius){
       yspeed = -yspeed;
     }
     x += xspeed;
