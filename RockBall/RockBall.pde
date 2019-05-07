@@ -121,10 +121,12 @@ class Ball extends Thing implements Displayable, Moveable {
      }
      */
     if (x < radius || x > width - radius) {
-      xspeed = -xspeed;
+      xspeed = -xspeed + random(-1,1);
+      yspeed += random(-1,1);
     }
     if (y < radius || y > height - radius) {
-      yspeed = -yspeed;
+      yspeed = -yspeed + random(-1,1);
+      xspeed += random(-1,1);
     }
     x += xspeed;
     y+= yspeed;
