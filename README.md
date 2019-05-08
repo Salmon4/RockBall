@@ -20,7 +20,7 @@ Team Members & Roles:
   - Qiong:
   
 5/7/19 [Partner pairs: Justin & Brandon, Qiong & Aditi]
-  - Justin: Added another image for rocks, choose randomly upon construction // Attempt collideable
+  - Justin: Added another image for rocks, choose randomly upon construction // Attempt collideable (Outside help: Processing documentation)
   - Brandon: Changed livingRock movement from wasd key to random movement. Worked on choosing image for livingRock.
   - Aditi:
   - Qiong: 
