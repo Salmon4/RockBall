@@ -6,17 +6,24 @@ interface Displayable {
 interface Moveable {
   void move();
 }
+interface Collideable {
+  boolean isTouching(Thing other);
+}
+
 abstract class Thing implements Displayable {
   float x, y;
+  float radius;
   Thing(float x, float y) {
     this.x = x;
     this.y = y;
+    radius = 25;
   }
   abstract void display();
 }
 
-class Rock extends Thing {
+class Rock extends Thing implements Collideable {
   PImage rocktype; //stores which of the two rocks it is
+  float radius = 25;
 
   Rock(float x, float y) {
     super(x, y);  
@@ -30,7 +37,22 @@ class Rock extends Thing {
   }
 
   void display() {
-     image(rocktype,x,y,70,70);
+     image(rocktype,x,y,radius*2,radius*2);
+  }
+  
+  boolean isTouching(Thing other) {
+   float dx = this.x - other.x;
+   float dy = this.y - other.y;
+   float dist = sqrt(sq(dx)+sq(dy));
+   if (dist < this.radius+other.radius) {
+     super.x = super.x+10;
+     return true;
+   }
+   return false;
+  }
+  
+  float getRadius() {
+    return radius;
   }
 }
 
