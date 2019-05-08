@@ -163,6 +163,7 @@ class Ball1 extends Ball {
   void display() {
       fill(red, green, blue);  
       circle(x, y, 2 * radius);
+      circle(x, y, radius*3/2);
       circle(x, y, radius);
       circle(x, y, radius/2);
   }
