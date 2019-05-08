@@ -41,14 +41,7 @@ class Rock extends Thing implements Collideable {
   }
   
   boolean isTouching(Thing other) {
-   float dx = this.x - other.x;
-   float dy = this.y - other.y;
-   float dist = sqrt(sq(dx)+sq(dy));
-   if (dist < this.radius+other.radius) {
-     super.x = super.x+10;
-     return true;
-   }
-   return false;
+    return true;
   }
   
   float getRadius() {
@@ -61,7 +54,6 @@ public class LivingRock extends Rock implements Moveable {
     super(x, y);
   }
   void move() {
-    /* ONE PERSON WRITE THIS */
     Random rng = new Random();
     int randomNum = rng.nextInt(4);
     x+=random(-5,5);
@@ -106,7 +98,7 @@ class Ball extends Thing implements Displayable, Moveable {
   }
 }
 
-/*DO NOT EDIT THE REST OF THIS */
+
 
 ArrayList<Displayable> thingsToDisplay;
 ArrayList<Moveable> thingsToMove;
@@ -140,8 +132,5 @@ void draw() {
   }
   for (Moveable thing : thingsToMove) {
     thing.move();
-  }
-  for (Collideable thing : collisions) {
-    thing.isTouching(thing);
   }
 }
