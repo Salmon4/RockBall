@@ -88,43 +88,11 @@ class Ball extends Thing implements Displayable, Moveable {
   }
 
   void display() {
-    //PImage photo;
-    //photo = loadImage("ball1.png");
-    //image(photo, x, y);
     fill(red, green, blue);  
     circle(x, y, 2 * radius);
-    /* ONE PERSON WRITE THIS */
   }
 
   void move() {
-    /*
-    boolean atX = false;
-     boolean atY = false;
-     if (Math.abs(x - goalx) >  (2 * increment)) {
-     if (goalx > x) {
-     x += increment;
-     } else {
-     x -= increment;
-     }
-     } else {
-     x = goalx;
-     atX = true;
-     }
-     if (Math.abs(y - goaly) > (2 * increment)) {
-     if (goaly > y) {
-     y += increment;
-     } else {
-     y -= increment;
-     }
-     } else {
-     y = goaly;
-     atY = true;
-     }
-     if (atX && atY) {
-     goalx = 60+random(width-110);
-     goaly = 60+random(height)-110;
-     }
-     */
     if (x < radius || x > width - radius) {
       xspeed = -xspeed + random(-1,1);
       yspeed += random(-1,1);
