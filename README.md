@@ -19,8 +19,8 @@ Team Members & Roles:
   - Aditi:
   - Qiong:
   
-5/7/19
-  - Justin: Added another image for rocks, choose randomly upon construction
+5/7/19 [Partner pairs: Justin & Brandon, Qiong & Aditi]
+  - Justin: Added another image for rocks, choose randomly upon construction // Attempt collideable
   - Brandon:
   - Aditi:
   - Qiong: 
