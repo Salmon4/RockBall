@@ -40,6 +40,21 @@ public class LivingRock extends Rock implements Moveable {
   }
   void move() {
     /* ONE PERSON WRITE THIS */
+    Random rng = new Random();
+    int randomNum = rng.nextInt(4);
+    if (randomNum == 0){
+      super.y = super.y - 10;
+    }
+    if (randomNum == 1){
+      super.y = super.y + 10;
+    }
+    if (randomNum == 2){
+      super.x = super.x - 10;
+    }
+    if (randomNum == 3){
+      super.x = super.x + 10;
+    }
+    /**
     if (key == 'w') {
       super.y = super.y - 10;
     }
@@ -53,6 +68,7 @@ public class LivingRock extends Rock implements Moveable {
       super.x = super.x + 10;
     }
     key = 'p';
+    **/
   }
 }
 
