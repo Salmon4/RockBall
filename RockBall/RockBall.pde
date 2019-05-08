@@ -52,15 +52,19 @@ class Rock extends Thing implements Collideable {
 public class LivingRock extends Rock implements Moveable {
   LivingRock(float x, float y) {
     super(x, y);
-    fill(red, green, blue);  
-    circle(x-2, y, 2 );
-    circle(x+2, y, 2 );
   }
   void move() {
     Random rng = new Random();
     int randomNum = rng.nextInt(4);
     x+=random(-5,5);
     y+=random(-5,5);
+  }
+  void display() {
+    super.display();
+    fill(0,0,0);  
+    circle(x+15, y+15, 10 );
+    circle(x+35, y+15, 10 );
+    
   }
 }
 
@@ -136,11 +140,5 @@ void draw() {
   for (Moveable thing : thingsToMove) {
     thing.move();
   }
-<<<<<<< HEAD
+
 }
-=======
-  for (Collideable thing : collisions) {
-    thing.isTouching(thing);
-  }
-}
->>>>>>> ac068641049e88bc87adc50ce9cd5a77420c4668
