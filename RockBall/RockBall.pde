@@ -219,6 +219,13 @@ class Ball2 extends Ball {
   }
 
   void move() {
+    angle+= speed;
+    x = sin(angle) * sin(angle) * c * radius * 10 + centerx;
+    y = cos(angle) * radius * 10 + centery;
+    if ((x < radius || x > width - radius) ||  (y < radius || y > height - radius)) {
+      speed*=-1;
+      angle -= PI/360;
+    }
   }
 }
 
