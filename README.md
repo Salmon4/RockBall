@@ -2,13 +2,13 @@
 
 Team Members & Roles:
 
-- Brandon C - LivingRock movement 
+- Brandon Chen - LivingRock movement 
 
-- Justin C - Rock Display
+- Justin Chen - Rock Display
 
-- Qiong H - Ball Movement
+- Qiong Huang - Ball Movement
 
-- Aditi H - Ball Display
+- Aditi Haiman - Ball Display
 
 
 **LOGS**
