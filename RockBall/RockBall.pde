@@ -41,6 +41,7 @@ class Rock extends Thing implements Collideable {
   }
 
   boolean isTouching(Thing other) {
+<<<<<<< HEAD
     float dx = this.x - other.x;
     float dy = this.y - other.y;
     float dist = sqrt(sq(dx)+sq(dy));
@@ -51,6 +52,11 @@ class Rock extends Thing implements Collideable {
     return false;
   }
 
+=======
+    return true;
+  }
+  
+>>>>>>> cc081f75e0e0b0c5b2a394e93075f589a94d7518
   float getRadius() {
     return radius;
   }
@@ -61,9 +67,9 @@ public class LivingRock extends Rock implements Moveable {
     super(x, y);
   }
   void move() {
-    /* ONE PERSON WRITE THIS */
     Random rng = new Random();
     int randomNum = rng.nextInt(4);
+<<<<<<< HEAD
     if (randomNum == 0) {
       super.y = super.y - 10;
     }
@@ -91,6 +97,17 @@ public class LivingRock extends Rock implements Moveable {
      }
      key = 'p';
      **/
+=======
+    x+=random(-5,5);
+    y+=random(-5,5);
+  }
+  void display() {
+    super.display();
+    fill(0,0,0);  
+    circle(x+15, y+15, 10 );
+    circle(x+35, y+15, 10 );
+    
+>>>>>>> cc081f75e0e0b0c5b2a394e93075f589a94d7518
   }
 }
 
@@ -113,43 +130,11 @@ class Ball extends Thing implements Displayable, Moveable {
   }
 
   void display() {
-    //PImage photo;
-    //photo = loadImage("ball1.png");
-    //image(photo, x, y);
     fill(red, green, blue);  
     circle(x, y, 2 * radius);
-    /* ONE PERSON WRITE THIS */
   }
 
   void move() {
-    /*
-    boolean atX = false;
-     boolean atY = false;
-     if (Math.abs(x - goalx) >  (2 * increment)) {
-     if (goalx > x) {
-     x += increment;
-     } else {
-     x -= increment;
-     }
-     } else {
-     x = goalx;
-     atX = true;
-     }
-     if (Math.abs(y - goaly) > (2 * increment)) {
-     if (goaly > y) {
-     y += increment;
-     } else {
-     y -= increment;
-     }
-     } else {
-     y = goaly;
-     atY = true;
-     }
-     if (atX && atY) {
-     goalx = 60+random(width-110);
-     goaly = 60+random(height)-110;
-     }
-     */
     if (x < radius || x > width - radius) {
       xspeed = -xspeed + random(-1, 1);
       yspeed += random(-1, 1);
@@ -163,6 +148,7 @@ class Ball extends Thing implements Displayable, Moveable {
   }
 }
 
+<<<<<<< HEAD
 class Ball1 extends Ball {
   float angle;
   float c;
@@ -218,26 +204,33 @@ class Ball2 extends Ball {
 }
 
 /*DO NOT EDIT THE REST OF THIS */
+=======
+
+>>>>>>> cc081f75e0e0b0c5b2a394e93075f589a94d7518
 
 ArrayList<Displayable> thingsToDisplay;
 ArrayList<Moveable> thingsToMove;
+ArrayList<Collideable> collisions;
 
 void setup() {
   size(1000, 800);
 
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
+  collisions = new ArrayList<Collideable>();
   for (int i = 0; i < 10; i++) {
     Ball1 b = new Ball1(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b);
     thingsToMove.add(b);
     Rock r = new Rock(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(r);
+    collisions.add(r);
   }
   for (int i = 0; i < 3; i++) {
     LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(m);
     thingsToMove.add(m);
+    collisions.add(m);
   }
 }
 void draw() {
@@ -248,4 +241,5 @@ void draw() {
   for (Moveable thing : thingsToMove) {
     thing.move();
   }
+
 }
