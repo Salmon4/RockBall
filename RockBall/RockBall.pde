@@ -41,7 +41,7 @@ class Rock extends Thing implements Collideable {
   }
 
   boolean isTouching(Thing other) {
-<<<<<<< HEAD
+
     float dx = this.x - other.x;
     float dy = this.y - other.y;
     float dist = sqrt(sq(dx)+sq(dy));
@@ -52,11 +52,10 @@ class Rock extends Thing implements Collideable {
     return false;
   }
 
-=======
-    return true;
-  }
+//=======
+//    return true;
+//  }
   
->>>>>>> cc081f75e0e0b0c5b2a394e93075f589a94d7518
   float getRadius() {
     return radius;
   }
@@ -69,7 +68,6 @@ public class LivingRock extends Rock implements Moveable {
   void move() {
     Random rng = new Random();
     int randomNum = rng.nextInt(4);
-<<<<<<< HEAD
     if (randomNum == 0) {
       super.y = super.y - 10;
     }
@@ -97,7 +95,7 @@ public class LivingRock extends Rock implements Moveable {
      }
      key = 'p';
      **/
-=======
+
     x+=random(-5,5);
     y+=random(-5,5);
   }
@@ -107,7 +105,6 @@ public class LivingRock extends Rock implements Moveable {
     circle(x+15, y+15, 10 );
     circle(x+35, y+15, 10 );
     
->>>>>>> cc081f75e0e0b0c5b2a394e93075f589a94d7518
   }
 }
 
@@ -148,7 +145,6 @@ class Ball extends Thing implements Displayable, Moveable {
   }
 }
 
-<<<<<<< HEAD
 class Ball1 extends Ball {
   float angle;
   float c;
@@ -167,6 +163,8 @@ class Ball1 extends Ball {
   void display() {
       fill(red, green, blue);  
       circle(x, y, 2 * radius);
+      circle(x, y, radius);
+      circle(x, y, radius/2);
   }
 
   void move() {
@@ -204,9 +202,7 @@ class Ball2 extends Ball {
 }
 
 /*DO NOT EDIT THE REST OF THIS */
-=======
 
->>>>>>> cc081f75e0e0b0c5b2a394e93075f589a94d7518
 
 ArrayList<Displayable> thingsToDisplay;
 ArrayList<Moveable> thingsToMove;
