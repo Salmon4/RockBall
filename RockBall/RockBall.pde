@@ -37,20 +37,20 @@ class Rock extends Thing implements Collideable {
   }
 
   void display() {
-     image(rocktype,x,y,radius*2,radius*2);
+    image(rocktype, x, y, radius*2, radius*2);
   }
-  
+
   boolean isTouching(Thing other) {
-   float dx = this.x - other.x;
-   float dy = this.y - other.y;
-   float dist = sqrt(sq(dx)+sq(dy));
-   if (dist < this.radius+other.radius) {
-     super.x = super.x+10;
-     return true;
-   }
-   return false;
+    float dx = this.x - other.x;
+    float dy = this.y - other.y;
+    float dist = sqrt(sq(dx)+sq(dy));
+    if (dist < this.radius+other.radius) {
+      super.x = super.x+10;
+      return true;
+    }
+    return false;
   }
-  
+
   float getRadius() {
     return radius;
   }
@@ -64,33 +64,33 @@ public class LivingRock extends Rock implements Moveable {
     /* ONE PERSON WRITE THIS */
     Random rng = new Random();
     int randomNum = rng.nextInt(4);
-    if (randomNum == 0){
+    if (randomNum == 0) {
       super.y = super.y - 10;
     }
-    if (randomNum == 1){
+    if (randomNum == 1) {
       super.y = super.y + 10;
     }
-    if (randomNum == 2){
+    if (randomNum == 2) {
       super.x = super.x - 10;
     }
-    if (randomNum == 3){
+    if (randomNum == 3) {
       super.x = super.x + 10;
     }
     /**
-    if (key == 'w') {
-      super.y = super.y - 10;
-    }
-    if (key == 's') {
-      super.y = super.y + 10;
-    }
-    if (key == 'a') {
-      super.x = super.x - 10;
-    }
-    if (key == 'd') {
-      super.x = super.x + 10;
-    }
-    key = 'p';
-    **/
+     if (key == 'w') {
+     super.y = super.y - 10;
+     }
+     if (key == 's') {
+     super.y = super.y + 10;
+     }
+     if (key == 'a') {
+     super.x = super.x - 10;
+     }
+     if (key == 'd') {
+     super.x = super.x + 10;
+     }
+     key = 'p';
+     **/
   }
 }
 
@@ -151,15 +151,69 @@ class Ball extends Thing implements Displayable, Moveable {
      }
      */
     if (x < radius || x > width - radius) {
-      xspeed = -xspeed + random(-1,1);
-      yspeed += random(-1,1);
+      xspeed = -xspeed + random(-1, 1);
+      yspeed += random(-1, 1);
     }
     if (y < radius || y > height - radius) {
-      yspeed = -yspeed + random(-1,1);
-      xspeed += random(-1,1);
+      yspeed = -yspeed + random(-1, 1);
+      xspeed += random(-1, 1);
     }
     x += xspeed;
     y+= yspeed;
+  }
+}
+
+class Ball1 extends Ball {
+  float angle;
+  float c;
+  float speed;
+  float centerx;
+  float centery;
+  Ball1(float x, float y) {
+    super(x, y);
+    angle = 0;
+    c = random(.5, 1.5);
+    speed = random(-PI/180, PI/180);
+    centerx = random(width/4, 3*width/4);
+    centery = random(height/4, 3*height/4);
+  }
+
+  void display() {
+      fill(red, green, blue);  
+      circle(x, y, 2 * radius);
+  }
+
+  void move() {
+    angle+= speed;
+    x = sin(angle) * c * radius * 10 + centerx;
+    y = cos(angle) * radius * 10 + centery;
+    
+    if ((x < radius || x > width - radius) ||  (y < radius || y > height - radius)) {
+      speed*=-1;
+      angle -= PI/360;
+    }
+   
+    //if (x < radius || x > width - radius) {
+    //  xspeed = -xspeed + random(-1, 1);
+    //  yspeed += random(-1, 1);
+    //}
+    //if (y < radius || y > height - radius) {
+    //  yspeed = -yspeed + random(-1, 1);
+    //  xspeed += random(-1, 1);
+    //}
+   
+  }
+}
+
+class Ball2 extends Ball {
+  Ball2(float x, float y) {
+    super(x, y);
+  }
+
+  void display() {
+  }
+
+  void move() {
   }
 }
 
@@ -174,7 +228,7 @@ void setup() {
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   for (int i = 0; i < 10; i++) {
-    Ball b = new Ball(50+random(width-100), 50+random(height-100));
+    Ball1 b = new Ball1(50+random(width-100), 50+random(height-100));
     thingsToDisplay.add(b);
     thingsToMove.add(b);
     Rock r = new Rock(50+random(width-100), 50+random(height-100));
