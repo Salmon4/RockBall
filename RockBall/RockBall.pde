@@ -52,10 +52,10 @@ class Rock extends Thing implements Collideable {
     return false;
   }
 
-//=======
-//    return true;
-//  }
-  
+  //=======
+  //    return true;
+  //  }
+
   float getRadius() {
     return radius;
   }
@@ -96,15 +96,14 @@ public class LivingRock extends Rock implements Moveable {
      key = 'p';
      **/
 
-    x+=random(-5,5);
-    y+=random(-5,5);
+    x+=random(-5, 5);
+    y+=random(-5, 5);
   }
   void display() {
     super.display();
-    fill(0,0,0);  
+    fill(0, 0, 0);  
     circle(x+15, y+15, 10 );
     circle(x+35, y+15, 10 );
-    
   }
 }
 
@@ -161,30 +160,30 @@ class Ball1 extends Ball {
   }
 
   void display() {
-      float squarex = x-(radius*cos(PI/4));
-      float squarey = y-(radius*sin(PI/4));
-      float sqrt = (float)Math.sqrt(2);
-      fill(red, green, blue);  
-      circle(x, y, 2 * radius);
-      square(squarex,squarey,radius*2/sqrt);
-      triangle(squarex, squarey, squarex + 2*radius/sqrt, squarey, squarex+radius/sqrt, squarey+2*radius/sqrt);
-      noFill();
-      triangle(squarex+radius/sqrt, squarey, squarex, squarey+2*radius/sqrt, squarex+2*radius/sqrt, squarey+2*radius/sqrt);
-      //circle(x, y, radius*3/2);
-      //circle(x, y, radius);
-      //circle(x, y, radius/2);
+    float squarex = x-(radius*cos(PI/4));
+    float squarey = y-(radius*sin(PI/4));
+    float sqrt = (float)Math.sqrt(2);
+    fill(red, green, blue);  
+    circle(x, y, 2 * radius);
+    square(squarex, squarey, radius*2/sqrt);
+    triangle(squarex, squarey, squarex + 2*radius/sqrt, squarey, squarex+radius/sqrt, squarey+2*radius/sqrt);
+    noFill();
+    triangle(squarex+radius/sqrt, squarey, squarex, squarey+2*radius/sqrt, squarex+2*radius/sqrt, squarey+2*radius/sqrt);
+    //circle(x, y, radius*3/2);
+    //circle(x, y, radius);
+    //circle(x, y, radius/2);
   }
 
   void move() {
     angle+= speed;
     x = sin(angle) * c * radius * 10 + centerx;
     y = cos(angle) * radius * 10 + centery;
-    
+
     if ((x < radius || x > width - radius) ||  (y < radius || y > height - radius)) {
       speed*=-1;
       angle -= PI/360;
     }
-   
+
     //if (x < radius || x > width - radius) {
     //  xspeed = -xspeed + random(-1, 1);
     //  yspeed += random(-1, 1);
@@ -193,57 +192,73 @@ class Ball1 extends Ball {
     //  yspeed = -yspeed + random(-1, 1);
     //  xspeed += random(-1, 1);
     //}
-   
   }
 }
 
 class Ball2 extends Ball {
+  float angle;
+  float c;
+  float speed;
+  float centerx;
+  float centery;
   Ball2(float x, float y) {
     super(x, y);
+    angle = 0;
+    c = random(.5, 1.5);
+    speed = random(-PI/180, PI/180);
+    centerx = random(width/4, 3*width/4);
+    centery = random(height/4, 3*height/4);
   }
 
   void display() {
+    fill(red, green, blue);  
+    circle(x, y, 2 * radius);
+    circle(x, y, radius*3/2);
+    circle(x, y, radius);
+    circle(x, y, radius/2);
   }
 
   void move() {
   }
 }
 
-/*DO NOT EDIT THE REST OF THIS */
+  /*DO NOT EDIT THE REST OF THIS */
 
 
-ArrayList<Displayable> thingsToDisplay;
-ArrayList<Moveable> thingsToMove;
-ArrayList<Collideable> collisions;
+  ArrayList<Displayable> thingsToDisplay;
+  ArrayList<Moveable> thingsToMove;
+  ArrayList<Collideable> collisions;
 
-void setup() {
-  size(1000, 800);
+  void setup() {
+    size(1000, 800);
 
-  thingsToDisplay = new ArrayList<Displayable>();
-  thingsToMove = new ArrayList<Moveable>();
-  collisions = new ArrayList<Collideable>();
-  for (int i = 0; i < 10; i++) {
-    Ball1 b = new Ball1(50+random(width-100), 50+random(height-100));
-    thingsToDisplay.add(b);
-    thingsToMove.add(b);
-    Rock r = new Rock(50+random(width-100), 50+random(height-100));
-    thingsToDisplay.add(r);
-    collisions.add(r);
+    thingsToDisplay = new ArrayList<Displayable>();
+    thingsToMove = new ArrayList<Moveable>();
+    collisions = new ArrayList<Collideable>();
+    for (int i = 0; i < 10; i++) {
+      Ball1 b = new Ball1(50+random(width-100), 50+random(height-100));
+      Ball2 b1 = new Ball2(50+random(width-100), 50+random(height-100));
+      thingsToDisplay.add(b);
+      thingsToDisplay.add(b1);
+      thingsToMove.add(b);
+      thingsToMove.add(b1);
+      Rock r = new Rock(50+random(width-100), 50+random(height-100));
+      thingsToDisplay.add(r);
+      collisions.add(r);
+    }
+    for (int i = 0; i < 3; i++) {
+      LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100));
+      thingsToDisplay.add(m);
+      thingsToMove.add(m);
+      collisions.add(m);
+    }
   }
-  for (int i = 0; i < 3; i++) {
-    LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100));
-    thingsToDisplay.add(m);
-    thingsToMove.add(m);
-    collisions.add(m);
+  void draw() {
+    background(255);
+    for (Displayable thing : thingsToDisplay) {
+      thing.display();
+    }
+    for (Moveable thing : thingsToMove) {
+      thing.move();
+    }
   }
-}
-void draw() {
-  background(255);
-  for (Displayable thing : thingsToDisplay) {
-    thing.display();
-  }
-  for (Moveable thing : thingsToMove) {
-    thing.move();
-  }
-
-}
