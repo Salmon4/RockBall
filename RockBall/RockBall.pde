@@ -161,9 +161,15 @@ class Ball1 extends Ball {
   }
 
   void display() {
+      float squarex = x-(radius*cos(PI/4));
+      float squarey = y-(radius*sin(PI/4));
+      float sqrt = (float)Math.sqrt(2);
       fill(red, green, blue);  
       circle(x, y, 2 * radius);
-      square(x-(radius*cos(PI/4)),y-(radius*sin(PI/4)),radius*2/(float)Math.sqrt(2));
+      square(squarex,squarey,radius*2/sqrt);
+      triangle(squarex, squarey, squarex + 2*radius/sqrt, squarey, squarex+radius/sqrt, squarey+2*radius/sqrt);
+      noFill();
+      triangle(squarex+radius/sqrt, squarey, squarex, squarey+2*radius/sqrt, squarex+2*radius/sqrt, squarey+2*radius/sqrt);
       //circle(x, y, radius*3/2);
       //circle(x, y, radius);
       //circle(x, y, radius/2);
