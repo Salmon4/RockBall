@@ -17,23 +17,17 @@ abstract class Thing implements Displayable {
 }
 
 class Rock extends Thing {
-  PImage rocktype; 
-  
+  PImage rocktype; //stores which of the two rocks it is
+
   Rock(float x, float y) {
     super(x, y);  
-     Random rng = new Random();
-      int randomNum = rng.nextInt(2);
-     if (randomNum == 0) {
-      PImage rock1;
-      rock1 = loadImage("rock1.jpeg");
-      rocktype = rock1;
-      image(rock1,x,y);
-   } else {
-       PImage rock2;
-       rock2 = loadImage("rock2.png");
-       rocktype = rock2;
-       image(rock2,x,y);
-   }
+    Random rng = new Random();
+    int randomNum = rng.nextInt(2);
+    if (randomNum == 0) { //each rock chooses between 2 different image files
+      rocktype = loadImage("rock1.jpeg");
+    } else {
+      rocktype = loadImage("rock2.png");
+    }
   }
 
   void display() {
