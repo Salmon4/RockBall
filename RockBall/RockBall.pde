@@ -113,6 +113,7 @@ class Ball extends Thing implements Displayable, Moveable {
   float red, green, blue;
   float xspeed, yspeed;
   float radius;
+  float ored,ogreen,oblue;
   Ball(float x, float y) {
     super(x, y);
     goalx = 50+random(width-100);
@@ -120,9 +121,24 @@ class Ball extends Thing implements Displayable, Moveable {
     red = random(0, 255);
     green = random(0, 255);
     blue = random(0, 255);
+    ored = red;
+    ogreen = green;
+    oblue = blue;
     xspeed = random(-4, 4);
     yspeed = random(-4, 4);
     radius = 25;
+  }
+
+  boolean isTouching(Thing other) {
+
+    float dx = this.x - other.x;
+    float dy = this.y - other.y;
+    float dist = sqrt(sq(dx)+sq(dy));
+    if (dist < this.radius+other.radius) {
+      //super.x = super.x+10;
+      return true;
+    }
+    return false;
   }
 
   void display() {
@@ -190,7 +206,16 @@ class Ball1 extends Ball {
         angle += PI/360;
       }
     }
-
+    red = ored;
+    green = ogreen;
+    blue = oblue;
+    for (Collideable c : collisions) {
+      if (isTouching((Thing) c)) {
+        red = 255;
+        green = 0;
+        blue = 0;
+      }
+    }
     //if (x < radius || x > width - radius) {
     //  xspeed = -xspeed + random(-1, 1);
     //  yspeed += random(-1, 1);
@@ -243,6 +268,16 @@ class Ball2 extends Ball {
         angle -= PI/360;
       } else {
         angle += PI/360;
+      }
+    }
+    red = ored;
+    green = ogreen;
+    blue = oblue;
+    for (Collideable c : collisions) {
+      if (isTouching((Thing) c)) {
+        red = 255;
+        green = 0;
+        blue = 0;
       }
     }
   }
