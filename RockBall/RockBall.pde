@@ -150,6 +150,7 @@ class Ball1 extends Ball {
   float speed;
   float centerx;
   float centery;
+  float spinradius;
   Ball1(float x, float y) {
     super(x, y);
     angle = 0;
@@ -157,6 +158,7 @@ class Ball1 extends Ball {
     speed = random(-PI/180, PI/180);
     centerx = random(width/4, 3*width/4);
     centery = random(height/4, 3*height/4);
+    spinradius = random(50, 500);
   }
 
   void display() {
@@ -176,12 +178,17 @@ class Ball1 extends Ball {
 
   void move() {
     angle+= speed;
-    x = sin(angle) * c * radius * 10 + centerx;
-    y = cos(angle) * radius * 10 + centery;
+    x = sin(angle) * c * spinradius + centerx;
+    y = cos(angle) * spinradius + centery;
 
     if ((x < radius || x > width - radius) ||  (y < radius || y > height - radius)) {
       speed*=-1;
       angle -= PI/360;
+      if (speed < 0) {
+        angle -= PI/360;
+      } else {
+        angle += PI/360;
+      }
     }
 
     //if (x < radius || x > width - radius) {
@@ -203,11 +210,18 @@ class Ball2 extends Ball {
   float centery;
   Ball2(float x, float y) {
     super(x, y);
-    angle = 0;
+    angle = random(0, 360);
     c = random(.5, 1.5);
     speed = random(-PI/180, PI/180);
     centerx = random(width/4, 3*width/4);
     centery = random(height/4, 3*height/4);
+    float nx = sin(angle) * sin(angle) * c * radius * 10 + centerx;
+    float ny = cos(angle) * radius * 10 + centery;
+    if ((nx < radius || nx > width - radius) ||  (ny < radius || ny > height - radius)) {
+      angle = random(0, 360);
+      centerx = random(width/4, 3*width/4);
+      centery = random(height/4, 3*height/4);
+    }
   }
 
   void display() {
@@ -219,53 +233,58 @@ class Ball2 extends Ball {
   }
 
   void move() {
+
     angle+= speed;
     x = sin(angle) * sin(angle) * c * radius * 10 + centerx;
     y = cos(angle) * radius * 10 + centery;
     if ((x < radius || x > width - radius) ||  (y < radius || y > height - radius)) {
       speed*=-1;
-      angle -= PI/360;
+      if (speed < 0) {
+        angle -= PI/360;
+      } else {
+        angle += PI/360;
+      }
     }
   }
 }
 
-  /*DO NOT EDIT THE REST OF THIS */
+/*DO NOT EDIT THE REST OF THIS */
 
 
-  ArrayList<Displayable> thingsToDisplay;
-  ArrayList<Moveable> thingsToMove;
-  ArrayList<Collideable> collisions;
+ArrayList<Displayable> thingsToDisplay;
+ArrayList<Moveable> thingsToMove;
+ArrayList<Collideable> collisions;
 
-  void setup() {
-    size(1000, 800);
+void setup() {
+  size(1000, 800);
 
-    thingsToDisplay = new ArrayList<Displayable>();
-    thingsToMove = new ArrayList<Moveable>();
-    collisions = new ArrayList<Collideable>();
-    for (int i = 0; i < 10; i++) {
-      Ball1 b = new Ball1(50+random(width-100), 50+random(height-100));
-      Ball2 b1 = new Ball2(50+random(width-100), 50+random(height-100));
-      thingsToDisplay.add(b);
-      thingsToDisplay.add(b1);
-      thingsToMove.add(b);
-      thingsToMove.add(b1);
-      Rock r = new Rock(50+random(width-100), 50+random(height-100));
-      thingsToDisplay.add(r);
-      collisions.add(r);
-    }
-    for (int i = 0; i < 3; i++) {
-      LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100));
-      thingsToDisplay.add(m);
-      thingsToMove.add(m);
-      collisions.add(m);
-    }
+  thingsToDisplay = new ArrayList<Displayable>();
+  thingsToMove = new ArrayList<Moveable>();
+  collisions = new ArrayList<Collideable>();
+  for (int i = 0; i < 10; i++) {
+    Ball1 b = new Ball1(50+random(width-100), 50+random(height-100));
+    Ball2 b1 = new Ball2(50+random(width-100), 50+random(height-100));
+    thingsToDisplay.add(b);
+    thingsToDisplay.add(b1);
+    thingsToMove.add(b);
+    thingsToMove.add(b1);
+    Rock r = new Rock(50+random(width-100), 50+random(height-100));
+    thingsToDisplay.add(r);
+    collisions.add(r);
   }
-  void draw() {
-    background(255);
-    for (Displayable thing : thingsToDisplay) {
-      thing.display();
-    }
-    for (Moveable thing : thingsToMove) {
-      thing.move();
-    }
+  for (int i = 0; i < 3; i++) {
+    LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100));
+    thingsToDisplay.add(m);
+    thingsToMove.add(m);
+    collisions.add(m);
   }
+}
+void draw() {
+  background(255);
+  for (Displayable thing : thingsToDisplay) {
+    thing.display();
+  }
+  for (Moveable thing : thingsToMove) {
+    thing.move();
+  }
+}
