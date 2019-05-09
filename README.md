@@ -26,7 +26,7 @@ Team Members & Roles:
   - Qiong: 
 
 5/8/19
-  - Justin: Update README
+  - Justin: Update README // Got the LivingRock eyes down, though needs some adjustment
   - Brandon:
   - Aditi: Worked on making movement for one Ball subclass circular, also worked on display to have more complex shapes
   - Qiong: 
