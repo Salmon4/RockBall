@@ -23,7 +23,6 @@ abstract class Thing implements Displayable {
 
 class Rock extends Thing implements Collideable {
   PImage rocktype; //stores which of the two rocks it is
-  float radius = 25;
 
   Rock(float x, float y, PImage rockI) {
     super(x, y);  
@@ -31,7 +30,7 @@ class Rock extends Thing implements Collideable {
   }
 
   void display() {
-    image(rocktype, x, y, radius*2, radius*2);
+    image(rocktype, x, y,90,90);
   }
 
   boolean isTouching(Thing other) {
@@ -65,8 +64,8 @@ public class LivingRock extends Rock implements Moveable {
   void display() {
     super.display();
     fill(255, 0, 0);  
-    circle(x+15, y+15, 10 );
-    circle(x+35, y+15, 10 );
+    circle(x+30, y+50, 10 );
+    circle(x+55, y+50, 10 );
   }
 }
 
@@ -255,8 +254,8 @@ void setup() {
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   collisions = new ArrayList<Collideable>();
-  PImage rockI = loadImage("rock1.jpeg");
-  PImage rockI2 = loadImage("rock2.png");
+  PImage rockI = loadImage("pebble.png");
+  PImage rockI2 = loadImage("pebble2.png");
   Random rng = new Random();
   Rock r;
   for (int i = 0; i < 10; i++) {
