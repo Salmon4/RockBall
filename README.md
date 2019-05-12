@@ -28,7 +28,7 @@ Team Members & Roles:
 5/8/19
   - Justin: Update README format // Got the LivingRock eyes down, though needs some adjustment
   - Brandon: Updated processing on school computer because circle function doesn't work on the old version. Worked on eyes and livingRock movement with Justin.
-  - Aditi: Worked on making movement for one Ball subclass circular, also worked on display to have more complex shapes
+  - Aditi: Worked on making movement for one Ball subclass circular, also worked on display to have more complex shapes, also made subclass Ball2 move in a different way than Ball1
   - Qiong: Worked with Aditi on a ball subclass that moves in a circle and bounces off of walls. 
   
 5/12/19
