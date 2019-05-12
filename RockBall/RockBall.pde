@@ -23,7 +23,6 @@ abstract class Thing implements Displayable {
 
 class Rock extends Thing implements Collideable {
   PImage rocktype; //stores which of the two rocks it is
-
   Rock(float x, float y, PImage rockI) {
     super(x, y);  
     rocktype = rockI;
@@ -39,12 +38,11 @@ class Rock extends Thing implements Collideable {
     float dy = this.y - other.y;
     float dist = sqrt(sq(dx)+sq(dy));
     if (dist < this.radius+other.radius) {
-      super.x = super.x+10;
+      //super.x = super.x+10;
       return true;
     }
     return false;
   }
-
   //=======
   //    return true;
   //  }
@@ -56,10 +54,11 @@ class Rock extends Thing implements Collideable {
 
 public class LivingRock extends Rock implements Moveable {
   boolean clockwise;
-  float increment = .1;
+  float increment = .05;
   float t = 1;
   float centerX;
   float centerY;
+  float red,green,blue;
   LivingRock(float x, float y, PImage rock) {
     super(x, y, rock);
     centerX = super.x;
@@ -83,16 +82,26 @@ public class LivingRock extends Rock implements Moveable {
      //t += .1;
     }
     if (t > 0 && super.x < 0 || super.x > 1000 || super.y < 0 || super.y > 800){
-      increment = -0.1;
+      increment = -0.05;
     }
     if (super.x == centerX && super.y == centerY){
-      increment = 0.1;
+      increment = 0.05;
     }
     t += increment;
+    //green = 0;
+    for (Collideable c : collisions) {
+      if (isTouching((Thing) c) && c != this) {
+       green = 255;
+      }
+      else{
+        green = 0;
+      }
+    }
   }
   void display() {
     super.display();
-    fill(255, 0, 0);  
+    green = 0;
+    fill(255, green, 0);  
     circle(x+30, y+50, 10 );
     circle(x+55, y+50, 10 );
     fill(0,0,0);
