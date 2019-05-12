@@ -30,3 +30,6 @@ Team Members & Roles:
   - Brandon: Updated processing on school computer because circle function doesn't work on the old version. Worked on eyes and livingRock movement with Justin.
   - Aditi: Worked on making movement for one Ball subclass circular, also worked on display to have more complex shapes
   - Qiong: Worked with Aditi on a ball subclass that moves in a circle and bounces off of walls. 
+  
+5/12/19
+  - Justin: Move loadImages from constructors to setup for rock & livingRock
