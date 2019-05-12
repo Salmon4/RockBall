@@ -66,6 +66,9 @@ public class LivingRock extends Rock implements Moveable {
     fill(255, 0, 0);  
     circle(x+30, y+50, 10 );
     circle(x+55, y+50, 10 );
+    fill(0,0,0);
+    circle(x+30, y+50, 2 );
+    circle(x+55, y+50, 2 );
   }
 }
 
