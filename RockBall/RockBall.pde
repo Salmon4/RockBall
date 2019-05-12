@@ -55,11 +55,40 @@ class Rock extends Thing implements Collideable {
 }
 
 public class LivingRock extends Rock implements Moveable {
+  boolean clockwise;
+  float increment = .1;
+  float t = 1;
+  float centerX;
+  float centerY;
   LivingRock(float x, float y, PImage rock) {
     super(x, y, rock);
+    centerX = super.x;
+    centerY = super.y;
+    int rand = (int)random(0,2);
+    if (rand == 0){
+      clockwise = true;
+    }else{
+      clockwise = false;
+    }
   }
   void move() {
-    
+    if (clockwise){
+     x = t*cos(t) + centerX;
+     y = t*sin(t) + centerY;
+     //t += .1;
+    }
+    if (!clockwise){
+     x = t*sin(t) + centerX;
+     y = t*cos(t) + centerY;
+     //t += .1;
+    }
+    if (t > 0 && super.x < 0 || super.x > 1000 || super.y < 0 || super.y > 800){
+      increment = -0.1;
+    }
+    if (super.x == centerX && super.y == centerY){
+      increment = 0.1;
+    }
+    t += increment;
   }
   void display() {
     super.display();
