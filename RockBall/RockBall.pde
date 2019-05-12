@@ -60,38 +60,7 @@ public class LivingRock extends Rock implements Moveable {
     super(x, y, rock);
   }
   void move() {
-    Random rng = new Random();
-    int randomNum = rng.nextInt(4);
-    if (randomNum == 0  && super.y > 10) {
-      super.y = super.y - 10;
-    }
-    if (randomNum == 1 && super.y < 790) {
-      super.y = super.y + 10;
-    }
-    if (randomNum == 2 && super.x > 10) {
-      super.x = super.x - 10;
-    }
-    if (randomNum == 3 && super.x < 990) {
-      super.x = super.x + 10;
-    }
-    /**
-     if (key == 'w') {
-     super.y = super.y - 10;
-     }
-     if (key == 's') {
-     super.y = super.y + 10;
-     }
-     if (key == 'a') {
-     super.x = super.x - 10;
-     }
-     if (key == 'd') {
-     super.x = super.x + 10;
-     }
-     key = 'p';
-     **/
-
-    x+=random(-5, 5);
-    y+=random(-5, 5);
+    
   }
   void display() {
     super.display();
@@ -283,7 +252,6 @@ ArrayList<Collideable> collisions;
 
 void setup() {
   size(1000, 800);
-
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   collisions = new ArrayList<Collideable>();
