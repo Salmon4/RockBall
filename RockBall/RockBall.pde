@@ -90,7 +90,7 @@ public class LivingRock extends Rock implements Moveable {
     t += increment;
     //green = 0;
     for (Collideable c : collisions) {
-      if (isTouching((Thing) c) && c != this) {
+      if (isTouching((Thing) c)) {
        green = 255;
       }
       else{
