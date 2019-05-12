@@ -32,4 +32,4 @@ Team Members & Roles:
   - Qiong: Worked with Aditi on a ball subclass that moves in a circle and bounces off of walls. 
   
 5/12/19
-  - Justin: Move loadImages from constructors to setup for rock & livingRock
+  - Justin: Move loadImages from constructors to setup for rock & livingRock, updated rock images to transparent ones
