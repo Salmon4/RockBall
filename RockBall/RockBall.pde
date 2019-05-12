@@ -25,15 +25,9 @@ class Rock extends Thing implements Collideable {
   PImage rocktype; //stores which of the two rocks it is
   float radius = 25;
 
-  Rock(float x, float y) {
+  Rock(float x, float y, PImage rockI) {
     super(x, y);  
-    Random rng = new Random();
-    int randomNum = rng.nextInt(2);
-    if (randomNum == 0) { //each rock chooses between 2 different image files
-      rocktype = loadImage("rock1.jpeg");
-    } else {
-      rocktype = loadImage("rock2.png");
-    }
+    rocktype = rockI;
   }
 
   void display() {
@@ -62,8 +56,8 @@ class Rock extends Thing implements Collideable {
 }
 
 public class LivingRock extends Rock implements Moveable {
-  LivingRock(float x, float y) {
-    super(x, y);
+  LivingRock(float x, float y, PImage rock) {
+    super(x, y, rock);
   }
   void move() {
     Random rng = new Random();
@@ -283,9 +277,6 @@ class Ball2 extends Ball {
   }
 }
 
-/*DO NOT EDIT THE REST OF THIS */
-
-
 ArrayList<Displayable> thingsToDisplay;
 ArrayList<Moveable> thingsToMove;
 ArrayList<Collideable> collisions;
@@ -296,6 +287,10 @@ void setup() {
   thingsToDisplay = new ArrayList<Displayable>();
   thingsToMove = new ArrayList<Moveable>();
   collisions = new ArrayList<Collideable>();
+  PImage rockI = loadImage("rock1.jpeg");
+  PImage rockI2 = loadImage("rock2.png");
+  Random rng = new Random();
+  Rock r;
   for (int i = 0; i < 10; i++) {
     Ball1 b = new Ball1(50+random(width-100), 50+random(height-100));
     Ball2 b1 = new Ball2(50+random(width-100), 50+random(height-100));
@@ -303,17 +298,23 @@ void setup() {
     thingsToDisplay.add(b1);
     thingsToMove.add(b);
     thingsToMove.add(b1);
-    Rock r = new Rock(50+random(width-100), 50+random(height-100));
+    int setRock = rng.nextInt(2);
+    if (setRock == 0) r = new Rock(50+random(width-100), 50+random(height-100), rockI);     
+    else r = new Rock(50+random(width-100), 50+random(height-100), rockI2);     
     thingsToDisplay.add(r);
     collisions.add(r);
   }
+  LivingRock m;
   for (int i = 0; i < 3; i++) {
-    LivingRock m = new LivingRock(50+random(width-100), 50+random(height-100));
+    int setRock = rng.nextInt(2);
+    if (setRock == 0) m = new LivingRock(50+random(width-100), 50+random(height-100), rockI);
+    else m = new LivingRock(50+random(width-100), 50+random(height-100), rockI2);
     thingsToDisplay.add(m);
     thingsToMove.add(m);
     collisions.add(m);
   }
 }
+
 void draw() {
   background(255);
   for (Displayable thing : thingsToDisplay) {
