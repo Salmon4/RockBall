@@ -129,8 +129,8 @@ class Ball extends Thing implements Displayable, Moveable {
 
   boolean isTouching(Thing other) {
 
-    float dx = this.x - other.x;
-    float dy = this.y - other.y;
+    float dx = this.x - other.x - other.radius;
+    float dy = this.y - other.y - other.radius ;
     float dist = sqrt(sq(dx)+sq(dy));
     if (dist < this.radius+other.radius) {
       //super.x = super.x+10;
