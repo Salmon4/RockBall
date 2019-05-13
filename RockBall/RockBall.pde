@@ -33,19 +33,14 @@ class Rock extends Thing implements Collideable {
   }
 
   boolean isTouching(Thing other) {
-
     float dx = this.x - other.x;
     float dy = this.y - other.y;
     float dist = sqrt(sq(dx)+sq(dy));
     if (dist < this.radius+other.radius) {
-      //super.x = super.x+10;
       return true;
     }
     return false;
   }
-  //=======
-  //    return true;
-  //  }
 
   float getRadius() {
     return radius;
